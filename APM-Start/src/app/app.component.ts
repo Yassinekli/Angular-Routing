@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 import { AuthService } from './user/auth.service';
 
+/* Import Routing Paths */
+import * as routingPaths from '../routes/RoutingPaths';
+
 @Component({
   selector: 'pm-root',
   templateUrl: './app.component.html',
@@ -10,6 +13,14 @@ import { AuthService } from './user/auth.service';
 export class AppComponent {
   pageTitle = 'Acme Product Management';
 
+  // String Routing URLs
+  welcome = routingPaths.HOME;
+  products = routingPaths.PRODUCTS;
+  login = routingPaths.LOGIN;
+
+  constructor(private authService: AuthService) { }
+
+  // Getters
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn;
   }
@@ -20,8 +31,6 @@ export class AppComponent {
     }
     return '';
   }
-
-  constructor(private authService: AuthService) { }
 
   logOut(): void {
     this.authService.logout();
